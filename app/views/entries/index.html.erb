@@ -21,8 +21,12 @@
         <td><%= entry.Email %></td>
         <td><%= entry.PODno %></td>
         <td><%= link_to 'Show', entry %></td>
+        <% if can? :update, entry %>
         <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
+        <% end %>
+        <% if can? :destroy, entry %>
         <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +34,8 @@
 
 <br>
 
-<%= link_to 'New Entry', new_entry_path %>
+<% @entries.each do |entry| %>
+  <% if can? :update, entry %>
+    <%= link_to 'New Entry', new_entry_path %>
+  <% end %>
+<% end %>

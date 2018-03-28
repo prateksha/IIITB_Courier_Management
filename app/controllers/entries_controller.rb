@@ -10,6 +10,7 @@ class EntriesController < ApplicationController
   # GET /entries/1
   # GET /entries/1.json
   def show
+    authorize! :update, @question
   end
 
   # GET /entries/new
@@ -19,6 +20,7 @@ class EntriesController < ApplicationController
 
   # GET /entries/1/edit
   def edit
+    authorize! :update, @question
   end
 
   # POST /entries
